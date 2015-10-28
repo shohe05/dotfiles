@@ -1,0 +1,29 @@
+[user]
+	name = Syouhei Tanaka
+	email = shou.tanak@gmail.com
+[alias]
+  st = status
+  ad = add
+  ci = commit
+  ps = push
+  pl = pull
+  lg = log
+  df = diff
+  co = checkout
+[push]
+	default = current
+[core]
+	editor = /usr/local/bin/vim
+	excludesfile = /Users/syouhei/.gitignore_global
+[heroku]
+	account = syo_t_2
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
