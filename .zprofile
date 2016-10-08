@@ -1,0 +1,1 @@
+/Users/syouhei/.zprezto/runcoms/zprofile
