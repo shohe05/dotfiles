@@ -1,1 +1,0 @@
-/Users/syouhei/.zprezto/runcoms/zlogin
