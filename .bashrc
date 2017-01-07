@@ -3,6 +3,9 @@ PS1="\[\e[1;34m\]\w\[\e[m\] "
 
 export PROMPT_DIRTRIM=2
 
+# TAB連打で選択
+bind TAB:menu-complete
+
 # alias
 alias emacs='emacsclient -nw -a ""'
 alias e='emacs'

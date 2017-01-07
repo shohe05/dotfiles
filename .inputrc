@@ -1,0 +1,31 @@
+# 大文字小文字を無視
+set completion-ignore-case on
+
+# 補完候補をLS_COLORSにしたがってファイルタイプ別に色付け
+set colored-stats on
+
+# 補完時に警告を出す補完候補のしきい値
+set completion-query-items 100
+
+# シンボリックリンクの場合もディレクトリに自動でスラッシュを付加する
+set mark-symlinked-directories on
+
+# onだとTABによるメニュー補完時、1回目はメニュー表示だけにする。
+# offだと即座に1番目の候補が挿入される。
+set menu-complete-display-prefix off
+
+# メニューを表示しつつ候補を表示、選択、逆選択する
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# 補完時に被った文字を消してくれる
+set skip-completed-text on
+
+# 補完候補のファイルタイプ別にlsのような識別子を付ける
+set visible-stats on
+
+# .から始まるファイルも補完候補に加えない
+set match-hidden-files off
+
+# 候補が画面をはみ出すときにless
+set page-completions off
