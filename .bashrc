@@ -25,7 +25,7 @@ alias ytdmp3='youtube-dl -o "%(title)s.%(ext)s" -x --audio-format mp3'
 alias diary='emacs ~/diary/$(date "+%Y/%m/%d.md")'
 
 # fzf初期化。入っていない場合はインストール
-if which fzf > /dev/null 2>&1; then
+if [ -f ~/.fzf.bash ]; then
   # agが入っていればagを使う
   if which ag > /dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND='ag -g ""'
