@@ -33,6 +33,8 @@ if which fzf > /dev/null 2>&1; then
 else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null
   ~/.fzf/install > /dev/null
+  # ~/.fzf/bin にインストールしている場合はパスを通す
+  [ -f ~/.fzf/bin/fzf ] && export PATH=$PATH:~/.fzf/bin
   source ~/.bashrc
 fi
 
