@@ -1,5 +1,6 @@
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
+tap caskroom/fonts
 
 brew 'mas'
 brew 'brew-cask'
@@ -49,3 +50,4 @@ cask 'postman'
 cask 'rescuetime'
 cask 'vlc'
 cask 'firefoxdeveloperedition-ja'
+cask 'font-source-code-pro'

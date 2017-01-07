@@ -22,7 +22,7 @@ set show-all-if-unmodified on
 set skip-completed-text on
 
 # 補完候補のファイルタイプ別にlsのような識別子を付ける
-set visible-stats on
+#set visible-stats on
 
 # .から始まるファイルも補完候補に加えない
 set match-hidden-files off
