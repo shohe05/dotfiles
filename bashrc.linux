@@ -1,5 +1,5 @@
 # プロンプト
-PS1="[\u@\h]\n\[\e[1;34m\]\w\[\e[m\] "
+PS1="[\u@\h \W]$ "
 
 export PROMPT_DIRTRIM=2
 
