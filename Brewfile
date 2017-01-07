@@ -18,6 +18,7 @@ brew 'youtube-dl'
 brew 'terminal-notifier'
 brew 'android-sdk'
 brew 'awscli'
+brew 'the_silver_searcher'
 
 cask 'phpstorm'
 cask 'google-chrome-canary'
