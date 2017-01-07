@@ -25,6 +25,10 @@ alias diary='emacs ~/diary/$(date "+%Y/%m/%d.md")'
 
 # fzf初期化。入っていない場合はインストール
 if which fzf > /dev/null 2>&1; then
+  # agが入っていればagを使う
+  if which ag > /dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+  fi
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null
