@@ -42,7 +42,6 @@ cask 'dropbox'
 cask 'vagrant'
 cask 'vagrant-manager'
 cask 'virtualbox'
-cask 'alfred'
 cask 'bathyscaphe'
 cask 'karabiner-elements'
 cask 'hammerspoon'
@@ -52,3 +51,8 @@ cask 'vlc'
 cask 'firefoxdeveloperedition-ja'
 cask 'font-source-code-pro'
 cask 'monolingual'
+
+mas 'LINE', id: 539883307
+mas 'Wunderlist', id: 410628904
+mas 'Bear', id: 1091189122
+mas 'BetterSnapTool', id: 417375580
