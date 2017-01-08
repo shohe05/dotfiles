@@ -1,6 +1,12 @@
 # 大文字小文字を無視
 set completion-ignore-case on
 
+# タブもしくはM-fで次の候補を補完
+TAB:menu-complete
+"\ef":menu-complete
+# M-bで前の候補を補完
+"\eb":menu-complete-backward
+
 # 補完候補をLS_COLORSにしたがってファイルタイプ別に色付け
 set colored-stats on
 
