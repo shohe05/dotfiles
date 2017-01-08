@@ -3,7 +3,7 @@ tap 'homebrew/bundle'
 tap 'caskroom/fonts'
 
 brew 'mas'
-brew 'caskroom/cask/brew-cask'
+brew 'cask'
 brew 'emacs'
 brew 'bash'
 brew 'mysql'
