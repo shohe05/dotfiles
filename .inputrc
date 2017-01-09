@@ -18,7 +18,7 @@ set mark-symlinked-directories on
 
 # onだとTABによるメニュー補完時、1回目はメニュー表示だけにする。
 # offだと即座に1番目の候補が挿入される。
-set menu-complete-display-prefix off
+set menu-complete-display-prefix on
 
 # メニューを表示しつつ候補を表示、選択、逆選択する
 set show-all-if-ambiguous on
