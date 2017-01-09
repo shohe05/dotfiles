@@ -16,7 +16,6 @@ brew 'tree'
 brew 'tmux'
 brew 'youtube-dl'
 brew 'terminal-notifier'
-brew 'android-sdk'
 brew 'awscli'
 brew 'the_silver_searcher'
 
@@ -57,3 +56,5 @@ mas 'LINE', id: 539883307
 mas 'Wunderlist', id: 410628904
 mas 'Bear', id: 1091189122
 mas 'BetterSnapTool', id: 417375580
+
+brew 'android-sdk'
