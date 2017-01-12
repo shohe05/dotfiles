@@ -2,6 +2,7 @@
 PS1="\[\e[1;34m\]\w\[\e[m\] "
 
 export PROMPT_DIRTRIM=2
+export PATH=$PATH:~/bin
 
 # alias
 alias emacs='emacsclient -nw -a ""'
