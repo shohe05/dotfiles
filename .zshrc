@@ -1,35 +1,41 @@
+##----------------------------------------------------------------------------
+## * プロンプト
+##----------------------------------------------------------------------------
 autoload -Uz colors
 colors
-
 PROMPT='%F{cyan}%~%f '
 
-# 補完
-# 補完機能を有効にする
+##----------------------------------------------------------------------------
+## * 補完
+##----------------------------------------------------------------------------
 autoload -Uz compinit
 compinit
-
-# 補完で小文字でも大文字にマッチさせる
+# 小文字でも大文字にマッチさせる
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
 # 補完時に重複した文字を消す
 setopt complete_in_word
-
 # * で全ファイル補完をしない
 setopt glob_complete
 
+##----------------------------------------------------------------------------
+## * その他
+##----------------------------------------------------------------------------
 # beep を無効にする
 setopt no_beep
-
 # ディレクトリ名だけでcdする
 setopt auto_cd
+# 高機能なワイルドカード展開を使用する
+setopt extended_glob
 
+##----------------------------------------------------------------------------
+## * コマンド履歴
+##----------------------------------------------------------------------------
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zhistory
 # メモリに保存される履歴の件数
 export HISTSIZE=10000
 # 履歴ファイルに保存される履歴の件数
 export SAVEHIST=100000000
-
 # 重複を記録しない
 setopt hist_ignore_dups
 # 開始と終了を記録
@@ -49,19 +55,9 @@ setopt hist_save_no_dups
 # historyコマンドは履歴に登録しない
 setopt hist_no_store
 
-# 高機能なワイルドカード展開を使用する
-setopt extended_glob
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# cdr
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
-
-export PATH=$PATH:~/bin
-
-# alias
+##----------------------------------------------------------------------------
+## * エイリアス
+##----------------------------------------------------------------------------
 alias emacs='emacsclient -nw -a ""'
 alias e='emacs'
 alias ekill='emacsclient -e "(kill-emacs)"'
@@ -84,6 +80,20 @@ alias ytdmp3='youtube-dl -o "%(title)s.%(ext)s" -x --audio-format mp3'
 alias diary='emacs ~/diary/$(date "+%Y/%m/%d.md")'
 alias af='anyframe-widget-select-widget'
 
+##----------------------------------------------------------------------------
+## * PATH
+##----------------------------------------------------------------------------
+export PATH=$PATH:~/bin
+
+##----------------------------------------------------------------------------
+## * cdr
+##----------------------------------------------------------------------------
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+##----------------------------------------------------------------------------
+## * fzf
+##----------------------------------------------------------------------------
 # fzf初期化。入っていない場合はインストール
 if [ -f ~/.fzf.zsh ]; then
   # agが入っていればagを使う
@@ -98,22 +108,22 @@ else
   source ~/.zshrc
 fi
 
-# zplug
+
+##----------------------------------------------------------------------------
+## * zplug
+##----------------------------------------------------------------------------
 if [ ! -f ~/.zplug/bin/zplug-env ]; then
   curl -sL zplug.sh/installer | zsh
 fi
-
 source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "mollifier/anyframe"
-
 if ! zplug check --verbose; then
   printf 'Install? [y/N]: '
   if read -q; then
     echo; zplug install
   fi
 fi
-
 zplug load --verbose >/dev/null
 
 # anyframe
