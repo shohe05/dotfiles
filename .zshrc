@@ -84,6 +84,10 @@ alias af='anyframe-widget-select-widget'
 ## * PATH
 ##----------------------------------------------------------------------------
 export PATH=$PATH:~/bin
+# go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOPATH=/usr/local/go
+export PATH=$PATH:$GOPATH/bin
 
 ##----------------------------------------------------------------------------
 ## * cdr
@@ -97,7 +101,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # fzf初期化。入っていない場合はインストール
 if [ -f ~/.fzf.zsh ]; then
   # agが入っていればagを使う
-  if [ -x "`which pdftk `" ]; then
+  if [ -x "`which ag `" ]; then
     export FZF_DEFAULT_COMMAND='ag -g ""'
   fi
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

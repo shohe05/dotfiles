@@ -19,6 +19,7 @@ brew 'youtube-dl'
 brew 'terminal-notifier'
 brew 'awscli'
 brew 'the_silver_searcher'
+brew 'yarn'
 
 cask 'atom'
 cask 'java'
@@ -52,6 +53,9 @@ cask 'rescuetime'
 cask 'vlc'
 cask 'firefoxdeveloperedition-ja'
 cask 'monolingual'
+cask 'kindle'
+cask 'diskwave'
+cask 'macdown'
 
 mas 'LINE', id: 539883307
 mas 'Wunderlist', id: 410628904
