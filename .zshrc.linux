@@ -100,10 +100,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 ##----------------------------------------------------------------------------
 # fzf初期化。入っていない場合はインストール
 if [ -f ~/.fzf.zsh ]; then
-  # agが入っていればagを使う
-  if [ -x "`which ag `" ]; then
-    export FZF_DEFAULT_COMMAND='ag -g ""'
-  fi
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 else
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf > /dev/null
