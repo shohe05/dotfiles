@@ -20,6 +20,7 @@ brew 'terminal-notifier'
 brew 'awscli'
 brew 'the_silver_searcher'
 brew 'yarn'
+brew 'mackup'
 
 cask 'atom'
 cask 'java'
