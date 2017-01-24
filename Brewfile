@@ -61,5 +61,6 @@ mas 'LINE', id: 539883307
 mas 'Wunderlist', id: 410628904
 mas 'Bear', id: 1091189122
 mas 'BetterSnapTool', id: 417375580
+mas 'Echofon Lite for Twitter', id: 403858460
 
 brew 'android-sdk'
