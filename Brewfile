@@ -21,6 +21,7 @@ brew 'awscli'
 brew 'the_silver_searcher'
 brew 'yarn'
 brew 'mackup'
+brew 'hubflow'
 
 cask 'atom'
 cask 'java'
