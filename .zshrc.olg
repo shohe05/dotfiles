@@ -78,10 +78,8 @@ alias grep='grep --color'
 alias ytd='youtube-dl -o "%(title)s.%(ext)s"'
 alias ytdmp3='youtube-dl -o "%(title)s.%(ext)s" -x --audio-format mp3'
 alias diary='emacs ~/diary/$(date "+%Y/%m/%d.md")'
-alias af='anyframe-widget-select-widget'
+alias af='anyframe-widgeot-select-widget'
 alias dm='docker-machine'
-alias g='cd $(ghq root)/$(ghq list | peco)'
-alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 
 ##----------------------------------------------------------------------------
 ## * PATH
@@ -89,7 +87,7 @@ alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'
 export PATH=$PATH:~/bin
 # go
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
-export GOPATH=~/go
+export GOPATH=/usr/local/go
 export PATH=$PATH:$GOPATH/bin
 
 ##----------------------------------------------------------------------------
@@ -126,7 +124,7 @@ source ~/.zplug/init.zsh
 zplug "zsh-users/zsh-autosuggestions"
 zplug "mollifier/anyframe"
 if ! zplug check --verbose; then
-  printf 'Inst~/go'
+  printf 'Install? [y/N]: '
   if read -q; then
     echo; zplug install
   fi
@@ -137,12 +135,6 @@ zplug load --verbose >/dev/null
 bindkey '^x' anyframe-widget-cdr
 
 
-##----------------------------------------------------------------------------
-## * RPROMPTにgitの情報表示
-##----------------------------------------------------------------------------
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{blue}%c%u[%b]%f"
