@@ -12,5 +12,3 @@
   co = checkout
 [push]
   default = current
-[ghq]
-  root = ~/ghq
