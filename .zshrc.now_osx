@@ -178,3 +178,5 @@ function ghq-new() {
   echo "# ${(C)name}" > README.md
   git add .
 }
+
+export GHQ_ROOT=$HOME/ghq
