@@ -9,7 +9,10 @@ source ~/.zplug/init.zsh
 
 zplug "zsh-users/zsh-autosuggestions"
 zplug "mollifier/anyframe"
-
+zplug "motemen/ghq", \
+    as:command, \
+    from:gh-r, \
+    rename-to:ghq
 
 if ! zplug check --verbose; then
   printf "Install? [y/N]:"

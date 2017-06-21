@@ -23,3 +23,5 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export ZPLUG_HOME=~/.zplug
 
 # export EDITOR=vim
+
+export GHQ_ROOT=$HOME/ghq
