@@ -1,11 +1,32 @@
-" バンドル
 
+call plug#begin('~/.vim/plugged')
+Plug 'itchyny/lightline.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'dracula/vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rhysd/accelerated-jk'
+Plug 'posva/vim-vue'
+call plug#end()
+" nerdtree
+map <Space>n :NERDTreeToggle<CR>
+" tab
+nnoremap <C-l> gt
+nnoremap <C-h> gT
+" One Darkを有効にするために必要
+let g:onedark_termcolors=16
+" シンタックスを入れる
+syntax on
+" カラースキーマを宣言する
+set t_Co=256
+colorscheme dracula
 " ファイルタイプを入れる
 filetype plugin indent on
-
-" シンタックスを入れる
-syntax enable
-
+" 検索モードを開く
+nmap <Space>f :CtrlP<CR>
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" j/kによる移動を速くする
+nmap j <Plug>(accelerated_jk_gj)
+nmap k <Plug>(accelerated_jk_gk)
 
 " ==================================================
 " 基本設定
