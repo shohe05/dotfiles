@@ -92,7 +92,7 @@ export ZPLUG_HOME=~/.zplug
 
 # export EDITOR=vim
 
-export GHQ_ROOT=$HOME/ghq
+export GHQ_ROOT=$HOME/.ghq
 
 
 ##----------------------------------------------------------------------------
@@ -113,7 +113,7 @@ alias mv='mv -iv'
 alias cl='clear'
 alias vi='vim'
 alias grep='grep --color'
-alias g='cd $(ghq root)/$(ghq list | fzf)'
+alias g='cd $(ghq root)/$(ghq list | peco)'
 
 
 # beep を無効にする
@@ -186,7 +186,7 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 function peco-cd () {
-    local selected_dir=$(find ~/ -type d | peco)
+    local selected_dir=$(find ~/ -type d -name .git -prune -o -type d -print | peco)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
