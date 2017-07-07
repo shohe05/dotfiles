@@ -1,0 +1,14 @@
+[user]
+  name =
+  email =
+[alias]
+  st = status
+  ad = add
+  ci = commit
+  ps = push
+  pl = pull
+  lg = log --oneline --decorate
+  df = diff
+  co = checkout
+[push]
+  default = current
