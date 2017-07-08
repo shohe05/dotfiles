@@ -65,6 +65,12 @@ function git-current-branch {
   echo "${branch_status}[$branch_name]${reset_color} "
 }
 
+function peco-buffer() {
+    BUFFER=$(eval ${BUFFER} | peco)
+    CURSOR=0
+}
+zle -N peco-buffer
+bindkey "^[p" peco-buffer
 
 if is_linux ; then
   PROMPT='%F{blue}%n@%M%f %F{cyan}

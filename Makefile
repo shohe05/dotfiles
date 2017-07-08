@@ -3,15 +3,15 @@ DOTFILES_TARGET   := $(wildcard .??*) .vim .zsh
 DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 UNAME 	          := ${shell uname}
 
-install: vim-init zsh-init
+install: zsh-init vim-init
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	vim +PlugInstall +qall
 	zsh
 vim-init:
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 zsh-init: peco-init ghq-init
-	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 peco-init:
 ifeq ($(UNAME),Darwin)
 	curl -L -O https://github.com/peco/peco/releases/download/v0.5.1/peco_darwin_amd64.zip
@@ -23,8 +23,8 @@ ifeq ($(UNAME),Linux)
 endif
 ghq-init:
 ifeq ($(UNAME),Darwin)
-  wget https://github.com/motemen/ghq/releases/download/v0.7.4/ghq_darwin_amd64.zip
-	unzip ghq_darwin_amd64.zip && sudo mv ghq_darwin_amd64/ghq /usr/local/bin && rm -rf ghq_darwin_amd64*
+	wget https://github.com/motemen/ghq/releases/download/v0.7.4/ghq_darwin_amd64.zip
+	unzip ghq_darwin_amd64.zip && sudo mv ghq /usr/local/bin && rm -rf ghq_darwin_amd64* zsh README.txt
 endif
 ifeq ($(UNAME),Linux)
 	wget https://github.com/motemen/ghq/releases/download/v0.7.4/ghq_linux_amd64.zip
