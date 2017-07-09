@@ -1,6 +1,6 @@
 # dotfiles
 
 ## installation
- * git clone git@git.corp.yahoo.co.jp:shohetan/dotfiles.git
+ * git clone git@github.com:shohetan/dotfiles.git
  * cd dotfiles
  * make
