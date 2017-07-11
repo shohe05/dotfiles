@@ -242,3 +242,31 @@ function ghq-new() {
   echo "# ${(C)name}" > README.md
   git add .
 }
+
+function delete-region() {
+    zle kill-region
+    CUTBUFFER=$killring[1]
+    shift killring
+}
+zle -N delete-region
+
+function backward-delete-char-or-region() {
+    if [ $REGION_ACTIVE -eq 0 ]; then
+        zle backward-delete-char
+    else
+        zle delete-region
+    fi
+}
+zle -N backward-delete-char-or-region
+
+function delete-char-or-list-or-region() {
+    if [ $REGION_ACTIVE -eq 0 ]; then
+        zle delete-char-or-list
+    else
+        zle delete-region
+    fi
+}
+zle -N delete-char-or-list-or-region
+
+bindkey "^h" backward-delete-char-or-region
+bindkey "^d" delete-char-or-list-or-region
