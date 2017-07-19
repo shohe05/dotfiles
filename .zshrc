@@ -1,83 +1,6 @@
-ostype() {
-    echo ${(L):-$(uname)}
-}
+autoload -U promptinit; promptinit
 
-os_detect() {
-    export PLATFORM
-    case "$(ostype)" in
-        *'linux'*)  PLATFORM='linux'   ;;
-        *'darwin'*) PLATFORM='osx'     ;;
-        *'bsd'*)    PLATFORM='bsd'     ;;
-        *)          PLATFORM='unknown' ;;
-    esac
-}
-
-# is_osx returns true if running OS is Macintosh
-is_osx() {
-    os_detect
-    if [ "$PLATFORM" = "osx" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-# is_linux returns true if running OS is GNU/Linux
-is_linux() {
-    os_detect
-    if [ "$PLATFORM" = "linux" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-function git-current-branch {
-  local branch_name st branch_status
-
-  if [ ! -e  ".git" ]; then
-    # gitで管理されていないディレクトリは何も返さない
-    return
-  fi
-  branch_name=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
-  st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-    # 全てcommitされてクリーンな状態
-    branch_status="%F{green}"
-  elif [[ -n `echo "$st" | grep "^Untracked files"` ]]; then
-    # gitに管理されていないファイルがある状態
-    branch_status="%F{red}?"
-  elif [[ -n `echo "$st" | grep "^Changes not staged for commit"` ]]; then
-    # git addされていないファイルがある状態
-    branch_status="%F{red}+"
-  elif [[ -n `echo "$st" | grep "^Changes to be committed"` ]]; then
-    # git commitされていないファイルがある状態
-    branch_status="%F{yellow}!"
-  elif [[ -n `echo "$st" | grep "^rebase in progress"` ]]; then
-    # コンフリクトが起こった状態
-    echo "%F{red}!(no branch)"
-    return
-  else
-    # 上記以外の状態の場合は青色で表示させる
-    branch_status="%F{blue}"
-  fi
-  # ブランチ名を色付きで表示する
-  echo "${branch_status}[$branch_name]${reset_color} "
-}
-
-function peco-buffer() {
-    BUFFER=$(eval ${BUFFER} | peco)
-    CURSOR=0
-}
-zle -N peco-buffer
-bindkey "^[p" peco-buffer
-
-if is_linux ; then
-  PROMPT='%F{blue}%n@%M%f %F{cyan}
-%~%f `git-current-branch`%f'
-else
-  PROMPT='%F{cyan}%~%f `git-current-branch`'
-fi
+prompt pure
 
 ##----------------------------------------------------------------------------
 ## * コマンド履歴
@@ -92,14 +15,7 @@ export SAVEHIST=100000000
 ##----------------------------------------------------------------------------
 ## * その他
 ##----------------------------------------------------------------------------
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export ZPLUG_HOME=~/.zplug
-
-# export EDITOR=vim
-
 export GHQ_ROOT=$HOME/.ghq
-
 
 ##----------------------------------------------------------------------------
 ## * エイリアス
@@ -162,11 +78,6 @@ setopt hist_no_store
 setopt prompt_subst
 
 ##----------------------------------------------------------------------------
-## * プロンプト
-##----------------------------------------------------------------------------
-autoload -Uz colors && colors
-
-##----------------------------------------------------------------------------
 ## * 補完
 ##----------------------------------------------------------------------------
 autoload -Uz compinit
@@ -179,6 +90,13 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 ##----------------------------------------------------------------------------
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+
+# --------------
+# plugin
+# --------------
+# zsh-syntax-highlighting
+[ -f ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # --------------
 # peco
@@ -213,60 +131,10 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^x^x' peco-cdr
 
-# --------------
-# plugin
-# --------------
-# zsh-syntax-highlighting
-[ -f ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source ${HOME}/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source ${HOME}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-##----------------------------------------------------------------------------
-## * ghq-new
-##----------------------------------------------------------------------------
-function ghq-new() {
-  local root=`ghq root`
-  local user=`git config --get github.user`
-  if [ -z "$user" ]; then
-    echo "you need to set github.user."
-    echo "git config --global github.user YOUR_GITHUB_USER_NAME"
-    return 1
-  fi
-  local name=$1
-  local repo="$root/github.com/$user/$name"
-  if [ -e "$repo" ]; then
-    echo "$repo is already exists."
-    return 1
-  fi
-  git init $repo
-  cd $repo
-  echo "# ${(C)name}" > README.md
-  git add .
+function peco-buffer() {
+    BUFFER=$(eval ${BUFFER} | peco)
+    CURSOR=0
 }
 
-function delete-region() {
-    zle kill-region
-    CUTBUFFER=$killring[1]
-    shift killring
-}
-zle -N delete-region
-
-function backward-delete-char-or-region() {
-    if [ $REGION_ACTIVE -eq 0 ]; then
-        zle backward-delete-char
-    else
-        zle delete-region
-    fi
-}
-zle -N backward-delete-char-or-region
-
-function delete-char-or-list-or-region() {
-    if [ $REGION_ACTIVE -eq 0 ]; then
-        zle delete-char-or-list
-    else
-        zle delete-region
-    fi
-}
-zle -N delete-char-or-list-or-region
-
-bindkey "^h" backward-delete-char-or-region
-bindkey "^d" delete-char-or-list-or-region
+zle -N peco-buffer
+bindkey "^[p" peco-buffer
