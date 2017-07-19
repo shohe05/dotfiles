@@ -9,9 +9,12 @@ install: zsh-init vim-init
 	zsh
 vim-init:
 	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-zsh-init: peco-init ghq-init
+zsh-init: pure-init peco-init ghq-init
 	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.zsh/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
+pure-init:
+	sudo wget https://raw.githubusercontent.com/sindresorhus/pure/master/pure.zsh -O /usr/share/zsh/site-functions/prompt_pure_setup
+	sudo wget https://raw.githubusercontent.com/sindresorhus/pure/master/async.zsh -O /usr/share/zsh/site-functions/async
 peco-init:
 ifeq ($(UNAME),Darwin)
 	curl -L -O https://github.com/peco/peco/releases/download/v0.5.1/peco_darwin_amd64.zip
