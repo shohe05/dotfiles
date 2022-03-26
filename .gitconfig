@@ -1,6 +1,6 @@
 [user]
-  name =
-  email =
+  name = Shohei Tanaka
+  email = shou.tanak@gmail.com
 [alias]
   st = status
   ad = add
@@ -10,5 +10,6 @@
   lg = log --oneline --decorate
   df = diff
   co = checkout
+  sw = switch
 [push]
   default = current
