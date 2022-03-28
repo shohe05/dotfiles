@@ -24,4 +24,4 @@
 [pull]
 	rebase = false
 [core]
-  editor = /usr/local/bin/nvim
+  editor = vim
