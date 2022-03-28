@@ -1,15 +1,27 @@
 [user]
-  name = Shohei Tanaka
-  email = shou.tanak@gmail.com
+	name = Shohei Tanaka
+	email = shou.tanak@gmail.com
 [alias]
   st = status
   ad = add
   ci = commit
-  ps = push
+  ps = !git push && BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) && open "https://github.com/ghostincjp/$(basename `git rev-parse --show-toplevel`)/compare/${BRANCH_NAME}?expand=1"
   pl = pull
   lg = log --oneline --decorate
   df = diff
   co = checkout
   sw = switch
+  # b  = !SWITCH_BRANCH_NAME=$(git branch | sed -r "s/^[ \*]+//" | peco) && git switch $SWITCH_BRANCH_NAME
+  finish-feature = !BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) && git sw main && git fetch && git merge FETCH_HEAD && git branch -D ${BRANCH_NAME} 
+  ff = finish-feature
 [push]
   default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
+[core]
+  editor = /usr/local/bin/nvim

@@ -33,10 +33,14 @@ alias cp='cp -iv'
 alias rm='rm -iv'
 alias mv='mv -iv'
 alias cl='clear'
+alias vim='nvim'
 alias vi='vim'
 alias grep='grep --color'
 alias g='cd $(ghq root)/$(ghq list | peco)'
-
+alias x='yarn nx run'
+alias yd='yt-dlp -f 299+140/137+140/22+140/136+140/135+140'
+alias ydf='yt-dlp -F'
+alias ydc='yd --cookies-from-browser firefox'
 
 # beep を無効にする
 setopt no_beep
@@ -138,3 +142,7 @@ function peco-buffer() {
 
 zle -N peco-buffer
 bindkey "^[p" peco-buffer
+
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
